@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{DC075D5E-39B2-3012-9A24-E6A902F38FDA}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>x64</Platform>
+    <ProjectName>pangolin_viewer</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\KISIK\Desktop\openvslam_installation\openvslam\build\src\pangolin_viewer\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">pangolin_viewer.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">pangolin_viewer</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.dll</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\lib\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">pangolin_viewer.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">pangolin_viewer</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.lib</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</GenerateManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>..\src;..\include;..\include\eigen3;..\include\opencv;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) -mtune=native -mtune=native</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;M_PI=3.14159265358979323846;USE_OPENMP;USE_DBOW2;CMAKE_INTDIR="Debug";pangolin_viewer_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;M_PI=3.14159265358979323846;USE_OPENMP;USE_DBOW2;CMAKE_INTDIR=\"Debug\";pangolin_viewer_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\src;..\include;..\include\eigen3;..\include\opencv;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>..\src;..\include;..\include\eigen3;..\include\opencv;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>..\openvslam\Debug\openvslam.lib;..\..\..\3rd\install\lib\pangolin.lib;..\..\..\3rd\install\lib\yaml-cpp.lib;..\..\..\3rd\install\x64\vc15\lib\opencv_calib3d340d.lib;..\..\..\3rd\install\x64\vc15\lib\opencv_features2d340d.lib;..\..\..\3rd\install\x64\vc15\lib\opencv_highgui340d.lib;..\..\..\3rd\install\x64\vc15\lib\opencv_videoio340d.lib;..\..\..\3rd\install\x64\vc15\lib\opencv_imgcodecs340d.lib;..\..\..\3rd\install\x64\vc15\lib\opencv_imgproc340d.lib;..\..\..\3rd\install\x64\vc15\lib\opencv_flann340d.lib;..\..\..\3rd\install\x64\vc15\lib\opencv_core340d.lib;..\..\..\3rd\install\lib\g2o_types_sim3_d.lib;..\..\..\3rd\install\lib\g2o_types_sba_d.lib;..\..\..\3rd\install\lib\g2o_types_slam3d_d.lib;..\..\..\3rd\install\lib\g2o_solver_dense_d.lib;..\..\..\3rd\install\lib\g2o_solver_eigen_d.lib;..\..\..\3rd\install\lib\g2o_solver_csparse_d.lib;..\..\..\3rd\install\lib\g2o_core_d.lib;..\..\..\3rd\install\lib\g2o_stuff_d.lib;..\..\..\3rd\install\lib\g2o_csparse_extension_d.lib;..\..\..\3rd\install\lib\libcxsparse.lib;..\..\..\3rd\install\lib\libccolamd.lib;..\..\..\3rd\install\lib\libcamd.lib;..\..\..\3rd\install\lib\libcolamd.lib;..\..\..\3rd\install\lib\libamd.lib;..\..\..\3rd\install\lib\liblapack.lib;..\..\..\3rd\install\lib\libblas.lib;..\..\..\3rd\install\lib\suitesparseconfig.lib;..\..\..\3rd\install\lib\metis.lib;..\..\..\3rd\install\lib\dbow2.lib;opengl32.lib;glu32.lib;..\..\..\3rd\install\lib\glewd.lib;mf.lib;mfplat.lib;mfreadwrite.lib;mfuuid.lib;strmiids.lib;..\..\..\3rd\install\lib\libpng16_staticd.lib;..\..\..\3rd\install\lib\zlibstaticd.lib;..\..\..\3rd\install\lib\jpeg.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>C:/Users/KISIK/Desktop/openvslam_installation/openvslam/build/src/pangolin_viewer/Debug/pangolin_viewer.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/KISIK/Desktop/openvslam_installation/openvslam/build/src/pangolin_viewer/Debug/pangolin_viewer.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>.\src;.\include;.\include\eigen3;.\include\opencv;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) -mtune=native -mtune=native -O3 -ffast-math</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;M_PI=3.14159265358979323846;USE_OPENMP;USE_DBOW2;CMAKE_INTDIR="Release";pangolin_viewer_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;M_PI=3.14159265358979323846;USE_OPENMP;USE_DBOW2;CMAKE_INTDIR=\"Release\";pangolin_viewer_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>.\src;.\include;.\include\eigen3;.\include\opencv;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>.\src;.\include;.\include\eigen3;.\include\opencv;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Link>
+      <AdditionalDependencies>..\openvslam\Release\openvslam.lib;..\..\..\3rd\install\lib\pangolin.lib;..\..\..\3rd\install\lib\yaml-cpp.lib;..\..\..\3rd\install\x64\vc15\lib\opencv_calib3d340.lib;..\..\..\3rd\install\x64\vc15\lib\opencv_features2d340.lib;..\..\..\3rd\install\x64\vc15\lib\opencv_highgui340.lib;..\..\..\3rd\install\x64\vc15\lib\opencv_videoio340.lib;..\..\..\3rd\install\x64\vc15\lib\opencv_imgcodecs340.lib;..\..\..\3rd\install\x64\vc15\lib\opencv_imgproc340.lib;..\..\..\3rd\install\x64\vc15\lib\opencv_flann340.lib;..\..\..\3rd\install\x64\vc15\lib\opencv_core340.lib;..\..\..\3rd\install\lib\g2o_types_sim3.lib;..\..\..\3rd\install\lib\g2o_types_sba.lib;..\..\..\3rd\install\lib\g2o_types_slam3d.lib;..\..\..\3rd\install\lib\g2o_solver_dense.lib;..\..\..\3rd\install\lib\g2o_solver_eigen.lib;..\..\..\3rd\install\lib\g2o_solver_csparse.lib;..\..\..\3rd\install\lib\g2o_core.lib;..\..\..\3rd\install\lib\g2o_stuff.lib;..\..\..\3rd\install\lib\g2o_csparse_extension.lib;..\..\..\3rd\install\lib\libcxsparse.lib;..\..\..\3rd\install\lib\libccolamd.lib;..\..\..\3rd\install\lib\libcamd.lib;..\..\..\3rd\install\lib\libcolamd.lib;..\..\..\3rd\install\lib\libamd.lib;..\..\..\3rd\install\lib\liblapack.lib;..\..\..\3rd\install\lib\libblas.lib;..\..\..\3rd\install\lib\suitesparseconfig.lib;..\..\..\3rd\install\lib\metis.lib;..\..\..\3rd\install\lib\dbow2.lib;opengl32.lib;glu32.lib;..\..\..\3rd\install\lib\glew.lib;mf.lib;mfplat.lib;mfreadwrite.lib;mfuuid.lib;strmiids.lib;..\..\..\3rd\install\lib\libpng16_static.lib;..\..\..\3rd\install\lib\zlibstatic.lib;..\..\..\3rd\install\lib\jpeg.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>Release/pangolin_viewer.lib</ImportLibrary>
+      <ProgramDataBaseFile>Release/pangolin_viewer.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include=".\src\pangolin_viewer\viewer.h" />
+    <ClInclude Include=".\src\pangolin_viewer\color_scheme.h" />
+    <ClCompile Include=".\src\pangolin_viewer\viewer.cc" />
+    <ClCompile Include=".\src\pangolin_viewer\color_scheme.cc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

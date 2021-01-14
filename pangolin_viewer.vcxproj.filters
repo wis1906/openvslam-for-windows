@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include=".\src\pangolin_viewer\viewer.cc" />
+    <ClCompile Include=".\src\pangolin_viewer\color_scheme.cc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include=".\src\pangolin_viewer\viewer.h" />
+    <ClInclude Include=".\src\pangolin_viewer\color_scheme.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{E6E74F79-6AD6-30D5-A3EB-1B92715D0AA4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{54BB515F-08DA-394A-8F9D-0277C884EE9A}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
