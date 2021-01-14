@@ -9,5 +9,4 @@ This is OpenVSLAM for windows OS development environment.
 4. run project.
 
 # You can select option
-you can select processing mode through editing "run_video_slam_for_windows.cc"
-1. Streaming mode : connect your spherical cam, then run program
+you can select processing mode through editing function main() in "run_video_slam_for_windows.cc"
