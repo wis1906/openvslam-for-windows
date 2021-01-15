@@ -145,54 +145,7 @@ void mono_tracking(const std::shared_ptr<openvslam::config>& cfg,
 }
 
 int main(int argc, char* argv[]) {
-    std::string vocab_file_path = "../../inputs/orb_vocab.dbow2";
-    std::string video_file_path = "../../inputs/video.mp4 ";
-    std::string config_file_path = "../../inputs/config.yaml";
-    std::string mask_img_path = "../../inputs/map.msg";
-    int frame_skip = 1; // default=1
-    bool no_sleep = false;
-    bool auto_term = false;
-    bool debug_mode = false;
-    bool eval_log = false;
-    std::string map_db_path = "";
 
-    // check validness of options
-    if (vocab_file_path == "" || video_file_path == "" || config_file_path == "") {
-        std::cerr << "invalid arguments" << std::endl;
-        return EXIT_FAILURE;
-    }
-
-    // setup logger
-    spdlog::set_pattern("[%Y-%m-%d %H:%M:%S.%e] %^[%L] %v%$");
-    if (debug_mode) {
-        spdlog::set_level(spdlog::level::debug);
-    }
-    else {
-        spdlog::set_level(spdlog::level::info);
-    }
-
-    // load configuration
-    std::shared_ptr<openvslam::config> cfg;
-    try {
-        cfg = std::make_shared<openvslam::config>(config_file_path);
-    }
-    catch (const std::exception& e) {
-        std::cerr << e.what() << std::endl;
-        return EXIT_FAILURE;
-    }
-
-    // run tracking
-    if (cfg->camera_->setup_type_ == openvslam::camera::setup_type_t::Monocular) {
-        mono_tracking(cfg, vocab_file_path, video_file_path, mask_img_path,
-                      frame_skip, no_sleep, auto_term,
-                      eval_log, map_db_path);
-    }
-    else {
-        throw std::runtime_error("Invalid setup type: " + cfg->camera_->get_setup_type_string());
-    }
-
-    return EXIT_SUCCESS;
-    /*
 #ifdef USE_STACK_TRACE_LOGGER
     google::InitGoogleLogging(argv[0]);
     google::InstallFailureSignalHandler();
@@ -273,5 +226,4 @@ int main(int argc, char* argv[]) {
 #endif
 
     return EXIT_SUCCESS;
-    */
 }
