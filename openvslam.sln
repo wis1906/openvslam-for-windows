@@ -72,6 +72,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "pangolin_viewer", "pangolin
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "openvslam", "openvslam.vcxproj", "{9883CE62-9990-3F13-B1BB-1043113795A5}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "run_video_localization_for_windows", "example\run_video_localization_for_windows.vcxproj", "{10852BE3-63E3-481A-B8D8-4029583C6993}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -126,6 +128,10 @@ Global
 		{9883CE62-9990-3F13-B1BB-1043113795A5}.Debug|x64.Build.0 = Debug|x64
 		{9883CE62-9990-3F13-B1BB-1043113795A5}.Release|x64.ActiveCfg = Release|x64
 		{9883CE62-9990-3F13-B1BB-1043113795A5}.Release|x64.Build.0 = Release|x64
+		{10852BE3-63E3-481A-B8D8-4029583C6993}.Debug|x64.ActiveCfg = Debug|x64
+		{10852BE3-63E3-481A-B8D8-4029583C6993}.Debug|x64.Build.0 = Debug|x64
+		{10852BE3-63E3-481A-B8D8-4029583C6993}.Release|x64.ActiveCfg = Release|x64
+		{10852BE3-63E3-481A-B8D8-4029583C6993}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

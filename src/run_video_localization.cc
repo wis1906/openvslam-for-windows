@@ -135,6 +135,7 @@ void mono_localization(const std::shared_ptr<openvslam::config>& cfg,
 }
 
 int main(int argc, char* argv[]) {
+
 #ifdef USE_STACK_TRACE_LOGGER
     google::InitGoogleLogging(argv[0]);
     google::InstallFailureSignalHandler();

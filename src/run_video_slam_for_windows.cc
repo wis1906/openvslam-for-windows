@@ -36,11 +36,11 @@ int main(int argc, char* argv[]) {
     google::InstallFailureSignalHandler();
 #endif
     std::string vocab_file_path = "../inputs/orb_vocab.dbow2";
-    std::string video_file_path = "../inputs/aist_living_lab_1/video.mp4 ";
-    std::string config_file_path = "../inputs/aist_living_lab_1/config.yaml";
-    std::string map_db_path = "../inputs/aist_living_lab_1/map.msg";
-    std::string map_pcd_path = "../inputs/aist_living_lab_1/map.pcd";
-    std::string map_ply_path = "../inputs/aist_living_lab_1/map.ply";
+    std::string video_file_path = "../inputs/lab_ecl/video.mp4 ";
+    std::string config_file_path = "../inputs/lab_ecl/config.yaml";
+    std::string map_db_path = "../inputs/lab_ecl/map.msg";
+    std::string map_pcd_path = "../inputs/lab_ecl/map.pcd";
+    std::string map_ply_path = "../inputs/lab_ecl/map.ply";
     std::string mask_img_path = "";
     int frame_skip = 1; // default=1
     bool no_sleep = false;
