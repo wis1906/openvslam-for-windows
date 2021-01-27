@@ -116,6 +116,7 @@
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <DebugInformationFormat>
       </DebugInformationFormat>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;USE_OPENMP;USE_DBOW2;M_PI=3.14159265358979323846;CMAKE_INTDIR=\"Release\";openvslam_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>

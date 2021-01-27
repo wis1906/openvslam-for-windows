@@ -71,6 +71,9 @@ public:
     // custom: save point cloud data to ply file
     void save_ply_database(const std::string& path) const;
 
+    // custom: save point cloud data to custom file
+    void save_custom_database(const std::string& path) const;
+
     //! Get the map publisher
     const std::shared_ptr<publish::map_publisher> get_map_publisher() const;
 

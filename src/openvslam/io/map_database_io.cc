@@ -93,6 +93,62 @@ void map_database_io::save_ply_pack(const std::string& path) {
 	spdlog::info("saving landmarks as ply successfully");
 }
 
+void map_database_io::save_custom_pack(const std::string& path) {
+	std::lock_guard<std::mutex> lock(data::map_database::mtx_database_);
+
+	assert(cam_db_ && map_db_);
+
+	spdlog::info("saving landmarks as custom mapdata to {}", path);
+
+	std::ofstream ofs(path, std::ios::out | std::ios::binary);
+	if (!ofs.is_open()) {
+		spdlog::critical("cannot create a file at {}", path);
+		return;
+	}
+
+	std::vector<Mat44_t> kfCameras;
+	std::vector<int> camKfIds;
+	std::vector<int> camOfIds;
+
+	std::vector<Vec3_t> landmarks;
+	std::vector<int> ldmkKfIds;
+	std::vector<int> ldmkOfIds;
+	map_db_->to_custom_mapdata(kfCameras, camKfIds, camOfIds, landmarks, ldmkKfIds, ldmkOfIds);
+
+	// set header
+	ofs << std::to_string(kfCameras.size()) << std::endl;
+	ofs << std::to_string(landmarks.size()) << std::endl;
+	ofs << std::endl;
+
+	// set camera data
+	for (int i = 0; i < kfCameras.size(); i++)
+	{
+		int kid = camKfIds[i];
+		int oid = camOfIds[i];
+		Mat44_t camPos = kfCameras[i];
+		ofs << std::to_string(kid) + " " + std::to_string(oid) << std::endl;
+		ofs << std::to_string(camPos(0, 0)) + " " + std::to_string(camPos(0, 1)) + " " + std::to_string(camPos(0, 2)) + " " + std::to_string(camPos(0, 3)) << std::endl;
+		ofs << std::to_string(camPos(1, 0)) + " " + std::to_string(camPos(1, 1)) + " " + std::to_string(camPos(1, 2)) + " " + std::to_string(camPos(0, 3)) << std::endl;
+		ofs << std::to_string(camPos(2, 0)) + " " + std::to_string(camPos(2, 1)) + " " + std::to_string(camPos(2, 2)) + " " + std::to_string(camPos(0, 3)) << std::endl;
+
+	}
+	ofs << std::endl;
+
+	// set landmark data
+	for (int i = 0; i < landmarks.size(); i++)
+	{
+		int kfid = ldmkKfIds[i];
+		int ofid = ldmkOfIds[i];
+		float x = (float)landmarks[i].x();
+		float y = (float)landmarks[i].y();
+		float z = (float)landmarks[i].z();
+		ofs << std::to_string(kfid) + " " + std::to_string(ofid) + " " + std::to_string(x) + " " + std::to_string(y) + " " + std::to_string(z) << std::endl;
+	}
+
+	ofs.close();
+	spdlog::info("saving landmarks as custom mapdata successfully");
+}
+
 void map_database_io::save_message_pack(const std::string& path) {
     std::lock_guard<std::mutex> lock(data::map_database::mtx_database_);
 

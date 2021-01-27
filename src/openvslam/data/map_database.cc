@@ -370,6 +370,7 @@ void map_database::to_pcd(std::vector<Vec3_t>& ldmks)
 	spdlog::info("encoding {} landmarks to pcd", landmarks_.size());
 	for (const auto id_lm : landmarks_) {
 		const auto lm = id_lm.second;
+		data::keyframe* sourceKF = lm->get_ref_keyframe();
 		assert(lm);
 		assert(id == lm->id_);
 		assert(!lm->will_be_erased());
@@ -379,6 +380,47 @@ void map_database::to_pcd(std::vector<Vec3_t>& ldmks)
 		landmarks.push_back(pos_w);
 	}
 	ldmks = landmarks;
+}
+
+void map_database::to_custom_mapdata(
+	std::vector<Mat44_t>& kfCameras, std::vector<int>& camKfIds, std::vector<int>& camOfIds, 
+	std::vector<Vec3_t>& ldmks, std::vector<int>& ldmkKfIds, std::vector<int>& ldmkOfIds)
+{
+	std::lock_guard<std::mutex> lock(mtx_map_access_);
+
+	// Save each keyframe data
+	for (const auto id_keyfrm : keyframes_) {
+		const auto id = id_keyfrm.first;
+		const auto keyfrm = id_keyfrm.second;
+
+		assert(keyfrm);
+		assert(id == keyfrm->id_);
+		assert(!keyfrm->will_be_erased());
+		keyfrm->graph_node_->update_connections();
+		assert(!keyfrms.count(std::to_string(id)));
+		
+		kfCameras.push_back(keyfrm->get_cam_pose());
+		camKfIds.push_back(id);
+		camOfIds.push_back(keyfrm->src_frm_id_);
+	}
+
+
+	// Save each 3D point data
+	for (const auto id_lm : landmarks_) {
+		const auto lm = id_lm.second;
+		data::keyframe* sourceKF = lm->get_ref_keyframe();
+
+		assert(lm);
+		assert(id == lm->id_);
+		assert(!lm->will_be_erased());
+		lm->update_normal_and_depth();
+		assert(!landmarks.count(std::to_string(id)));
+
+		Vec3_t pos_w = lm->get_pos_in_world();
+		ldmks.push_back(pos_w);
+		ldmkKfIds.push_back((int)sourceKF->id_);
+		ldmkOfIds.push_back((int)sourceKF->src_frm_id_);
+	}
 }
 
 } // namespace data

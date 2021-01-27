@@ -158,6 +158,11 @@ public:
     //custom: Dump landmarks to Vec3_t vector
     void to_pcd(std::vector<Vec3_t>& ldmks);
 
+    //custom: Dump custom map data
+    void to_custom_mapdata(
+	    std::vector<Mat44_t>& kfCameras, std::vector<int>& camKfIds, std::vector<int>& camOfIds,
+	    std::vector<Vec3_t>& ldmks, std::vector<int>& ldmkKfIds, std::vector<int>& ldmkOfIds);
+
     //! origin keyframe
     keyframe* origin_keyfrm_ = nullptr;
 

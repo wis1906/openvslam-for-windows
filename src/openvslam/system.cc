@@ -186,6 +186,13 @@ void system::save_ply_database(const std::string& path) const {
 	resume_other_threads();
 }
 
+void system::save_custom_database(const std::string& path) const {
+	pause_other_threads();
+	io::map_database_io map_db_io(cam_db_, map_db_, bow_db_, bow_vocab_);
+	map_db_io.save_custom_pack(path);
+	resume_other_threads();
+}
+
 const std::shared_ptr<publish::map_publisher> system::get_map_publisher() const {
     return map_publisher_;
 }

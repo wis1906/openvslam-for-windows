@@ -34,6 +34,10 @@ public:
     //custom: save landmark database as ply
     void save_ply_pack(const std::string& path);
 
+    //custom: save landmark database as custom
+    void save_custom_pack(const std::string& path);
+
+
     /**
      * Save the map database as MessagePack
      */
