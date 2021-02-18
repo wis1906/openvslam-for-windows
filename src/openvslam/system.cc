@@ -186,6 +186,13 @@ void system::save_ply_database(const std::string& path) const {
 	resume_other_threads();
 }
 
+void system::save_xyz_database(const std::string& path) const {
+	pause_other_threads();
+	io::map_database_io map_db_io(cam_db_, map_db_, bow_db_, bow_vocab_);
+	map_db_io.save_xyz_pack(path);
+	resume_other_threads();
+}
+
 void system::save_custom_database(const std::string& path) const {
 	pause_other_threads();
 	io::map_database_io map_db_io(cam_db_, map_db_, bow_db_, bow_vocab_);
@@ -265,6 +272,7 @@ Mat44_t system::feed_monocular_frame(const cv::Mat& img, const double timestamp,
         map_publisher_->set_current_cam_pose(cam_pose_cw);
     }
 
+    map_db_->addCameraOfFrame(cam_pose_cw);
     return cam_pose_cw;
 }
 

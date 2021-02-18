@@ -94,9 +94,11 @@ bool two_view_triangulator::check_reprojection_error(const Vec3_t& pos_w, const 
 
     // chi-squared values for p=5%
     // (n=2)
-    constexpr float chi_sq_2D = 5.99146;
+    //constexpr float chi_sq_2D = 5.99146;
+    constexpr float chi_sq_2D = 0.99146;
     // (n=3)
-    constexpr float chi_sq_3D = 7.81473;
+    //constexpr float chi_sq_3D = 7.81473;
+    constexpr float chi_sq_3D = 0.81473;
 
     Vec2_t reproj_in_cur;
     float x_right_in_cur;

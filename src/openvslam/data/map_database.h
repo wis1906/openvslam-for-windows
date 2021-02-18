@@ -60,6 +60,9 @@ public:
      */
     void erase_landmark(landmark* lm);
 
+    //custom: add camera matrix of frame to list
+    void addCameraOfFrame(Mat44_t camMat);
+
     /**
      * Set local landmarks
      * @param local_lms
@@ -160,6 +163,7 @@ public:
 
     //custom: Dump custom map data
     void to_custom_mapdata(
+	    std::vector<Mat44_t>& frameCameras,
 	    std::vector<Mat44_t>& kfCameras, std::vector<int>& camKfIds, std::vector<int>& camOfIds,
 	    std::vector<Vec3_t>& ldmks, std::vector<int>& ldmkKfIds, std::vector<int>& ldmkOfIds);
 
@@ -217,6 +221,9 @@ private:
     std::unordered_map<unsigned int, keyframe*> keyframes_;
     //! IDs and landmarks
     std::unordered_map<unsigned int, landmark*> landmarks_;
+
+    //custom: camera matrix data for every frame
+    std::vector<Mat44_t> frame_cameras;
 
     //! local landmarks
     std::vector<landmark*> local_landmarks_;

@@ -28,13 +28,16 @@ public:
      */
     ~map_database_io() = default;
 
-    //custom: save landmark database as pcd
+    //custom: save landmark database as .pcd
     void save_pcd_pack(const std::string& path);
 
-    //custom: save landmark database as ply
+    //custom: save landmark database as .ply
     void save_ply_pack(const std::string& path);
 
-    //custom: save landmark database as custom
+    //custom: save landmark database as .xyz
+    void save_xyz_pack(const std::string& path);
+
+    //custom: save landmark database as .cdb
     void save_custom_pack(const std::string& path);
 
 

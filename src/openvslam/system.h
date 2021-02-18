@@ -65,13 +65,16 @@ public:
     //! Save the map database to the MessagePack file
     void save_map_database(const std::string& path) const;
 
-    // custom: save point cloud data to pcd file
+    // custom: save point cloud data to .pcd file
     void save_pcd_database(const std::string& path) const;
 
-    // custom: save point cloud data to ply file
+    // custom: save point cloud data to .xyz file
     void save_ply_database(const std::string& path) const;
 
-    // custom: save point cloud data to custom file
+    // custom: save point cloud data to .pcl file
+    void save_xyz_database(const std::string& path) const;
+
+    // custom: save point cloud data to .cdb file
     void save_custom_database(const std::string& path) const;
 
     //! Get the map publisher

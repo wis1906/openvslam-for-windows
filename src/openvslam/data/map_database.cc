@@ -51,6 +51,22 @@ void map_database::erase_landmark(landmark* lm) {
     // TODO: delete object
 }
 
+
+void map_database::addCameraOfFrame(Mat44_t camMat)
+{
+	//get inverse matrix
+	const Mat33_t rot_cw = camMat.block<3, 3>(0, 0);
+	const Vec3_t trans_cw = camMat.block<3, 1>(0, 3);
+	const Mat33_t rot_wc = rot_cw.transpose();
+	Vec3_t cam_center_ = -rot_wc * trans_cw;
+
+	Mat44_t cam_pose_wc_ = Mat44_t::Identity();
+	cam_pose_wc_.block<3, 3>(0, 0) = rot_wc;
+	cam_pose_wc_.block<3, 1>(0, 3) = cam_center_;
+
+	frame_cameras.push_back(cam_pose_wc_);
+}
+
 void map_database::set_local_landmarks(const std::vector<landmark*>& local_lms) {
     std::lock_guard<std::mutex> lock(mtx_map_access_);
     local_landmarks_ = local_lms;
@@ -383,6 +399,7 @@ void map_database::to_pcd(std::vector<Vec3_t>& ldmks)
 }
 
 void map_database::to_custom_mapdata(
+	std::vector<Mat44_t>& frameCameras,
 	std::vector<Mat44_t>& kfCameras, std::vector<int>& camKfIds, std::vector<int>& camOfIds, 
 	std::vector<Vec3_t>& ldmks, std::vector<int>& ldmkKfIds, std::vector<int>& ldmkOfIds)
 {
@@ -399,11 +416,13 @@ void map_database::to_custom_mapdata(
 		keyfrm->graph_node_->update_connections();
 		assert(!keyfrms.count(std::to_string(id)));
 		
-		kfCameras.push_back(keyfrm->get_cam_pose());
+		kfCameras.push_back(keyfrm->get_cam_pose_inv());
 		camKfIds.push_back(id);
 		camOfIds.push_back(keyfrm->src_frm_id_);
 	}
 
+	// Save frame camera vector
+	frameCameras = frame_cameras;
 
 	// Save each 3D point data
 	for (const auto id_lm : landmarks_) {

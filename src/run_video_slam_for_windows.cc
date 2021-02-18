@@ -28,7 +28,7 @@
 void mono_tracking(const std::shared_ptr<openvslam::config>& cfg,
 	const std::string& vocab_file_path, const std::string& video_file_path, const std::string& mask_img_path,
 	const unsigned int frame_skip, const bool no_sleep, const bool auto_term,
-	const bool eval_log, const std::string& map_db_path, const std::string& map_pcd_path, const std::string& map_ply_path, const std::string& map_custom_db_path);
+	const bool eval_log, const std::string& map_db_path, const std::string& map_pcd_path, const std::string& map_ply_path, const std::string& map_xyz_path, const std::string& map_custom_db_path);
 
 int main(int argc, char* argv[]) {
 #ifdef USE_STACK_TRACE_LOGGER
@@ -36,12 +36,13 @@ int main(int argc, char* argv[]) {
     google::InstallFailureSignalHandler();
 #endif
     std::string vocab_file_path = "../inputs/orb_vocab.dbow2";
-    std::string video_file_path = "../inputs/lab_ecl/video.mp4 ";
-    std::string config_file_path = "../inputs/lab_ecl/config.yaml";
-    std::string map_db_path = "../inputs/lab_ecl/map.msg";
-    std::string map_pcd_path = "../inputs/lab_ecl/map.pcd";
-    std::string map_ply_path = "../inputs/lab_ecl/map.ply";
-    std::string map_custom_db_path = "../inputs/lab_ecl/map.cdb";
+    std::string video_file_path = "../inputs/lab_ecl_2/video.mp4 ";
+    std::string config_file_path = "../inputs/lab_ecl_2/config.yaml";
+    std::string map_db_path = "../inputs/lab_ecl_2/map.msg";
+    std::string map_pcd_path = "../inputs/lab_ecl_2/map.pcd";
+    std::string map_ply_path = "../inputs/lab_ecl_2/map.ply";
+    std::string map_xyz_path = "../inputs/lab_ecl_2/map.xyz";
+    std::string map_custom_db_path = "../inputs/lab_ecl_2/map.cdb";
     std::string mask_img_path = "";
     int frame_skip = 1; // default=1
     bool no_sleep = false;
@@ -80,7 +81,7 @@ int main(int argc, char* argv[]) {
     if (cfg->camera_->setup_type_ == openvslam::camera::setup_type_t::Monocular) {
         mono_tracking(cfg, vocab_file_path, video_file_path, mask_img_path,
                       frame_skip, no_sleep, auto_term,
-                      eval_log, map_db_path, map_pcd_path, map_ply_path, map_custom_db_path);
+                      eval_log, map_db_path, map_pcd_path, map_ply_path, map_xyz_path, map_custom_db_path);
     }
     else {
         throw std::runtime_error("Invalid setup type: " + cfg->camera_->get_setup_type_string());
@@ -96,7 +97,7 @@ int main(int argc, char* argv[]) {
 void mono_tracking(const std::shared_ptr<openvslam::config>& cfg,
 	const std::string& vocab_file_path, const std::string& video_file_path, const std::string& mask_img_path,
 	const unsigned int frame_skip, const bool no_sleep, const bool auto_term,
-	const bool eval_log, const std::string& map_db_path, const std::string& map_pcd_path, const std::string& map_ply_path, const std::string& map_custom_db_path) {
+	const bool eval_log, const std::string& map_db_path, const std::string& map_pcd_path, const std::string& map_ply_path, const std::string& map_xyz_path, const std::string& map_custom_db_path) {
 	// load the mask image
 	const cv::Mat mask = mask_img_path.empty() ? cv::Mat{} : cv::imread(mask_img_path, cv::IMREAD_GRAYSCALE);
 
@@ -208,6 +209,8 @@ void mono_tracking(const std::shared_ptr<openvslam::config>& cfg,
 		SLAM.save_pcd_database(map_pcd_path);
 	if (!map_ply_path.empty())
 		SLAM.save_ply_database(map_ply_path);
+	if (!map_xyz_path.empty())
+		SLAM.save_xyz_database(map_xyz_path);
 	if (!map_custom_db_path.empty())
 		SLAM.save_custom_database(map_custom_db_path);
 
